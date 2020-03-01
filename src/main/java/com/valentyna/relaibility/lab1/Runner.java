@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
 import static com.valentyna.relaibility.lab1.FileReader.getContentFromFile;
 import static com.valentyna.relaibility.lab1.GraphicBuilder.printBarGraphic;
 import static java.lang.Math.pow;
@@ -27,7 +26,7 @@ public class Runner {
     private static final String NORMAL_FILE_NAME = "normal";
     private static final String UNIFORM_FILE_NAME = "uniform";
 
-    private static double[] sample = getContentFromFile(EXPONENTIAL_FILE_NAME);
+    private static double[] sample = getContentFromFile(NORMAL_FILE_NAME);
     private static List<double[]> ranges;
 
     public static void main(String[] args) {
@@ -42,7 +41,6 @@ public class Runner {
         System.out.println("T ндв = " + mean);
         System.out.println("D = " + variance);
         System.out.println("σ = " + standardDeviation);
-        System.out.println("λ = " + 1 / statistics.getMean());
 
         double[] statisticDensity = calculateStatisticDensity();
         double[] statisticProbabilityOfFailure = ranges.stream()
@@ -88,8 +86,18 @@ public class Runner {
     private static void buildDistributionProbabilityGraph(AbstractRealDistribution distribution, String distributionName) {
         double[] probabilityOfFailure = calculateFailureProbability(distribution);
         double[] failureFreeProbability = calculateFailureFreeProbability(probabilityOfFailure);
+
+        double[] density = ranges.stream()
+                .mapToDouble(r -> distribution.density(r[1]))
+                .toArray();
+
+        double[] intensity = IntStream.range(0, density.length - 1)
+                .mapToDouble(i -> density[i] / failureFreeProbability[i])
+                .toArray();
+
         printBarGraphic("Q(t)", distributionName, getRanges(), probabilityOfFailure);
         printBarGraphic("P(t)", distributionName, getRanges(), failureFreeProbability);
+        printBarGraphic("λ(t)", distributionName, getRanges(), intensity);
     }
 
     private static double[] calculateFailureProbability(AbstractRealDistribution distribution) {
