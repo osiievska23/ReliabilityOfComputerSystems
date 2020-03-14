@@ -10,7 +10,7 @@ import static com.valentyna.relaibility.util.FileReader.getMatrixFromFile;
 
 public class Runner {
 
-    private static final int[][] matrix = getMatrixFromFile("scheme.csv");
+    private static final int[][] matrix = getMatrixFromFile("src/main/resources/scheme.csv");
     private static final double[] probabilities = new double[]{0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.92, 0.94};
     private static List<List<Integer>> possiblePaths = new ArrayList<>();
 
@@ -24,6 +24,8 @@ public class Runner {
                 .filter(state -> possiblePaths.stream().anyMatch(state::containsAll))
                 .forEach(state -> stateProbabilities.put(state, calculateStateProbability(state)));
 
+        printSystemAbleStatesTable(stateProbabilities);
+
         double systemProbability = stateProbabilities.values().stream().reduce(0.0, Double::sum);
         System.out.println("P(10) = " + systemProbability);
 
@@ -32,9 +34,6 @@ public class Runner {
 
         double timeToFailure = 1 / failureRate;
         System.out.println("T ндв = " + timeToFailure);
-
-        printSystemAbleStatesTable(stateProbabilities);
-
     }
 
     private static Double calculateStateProbability(List<Integer> state) {

@@ -22,9 +22,9 @@ public class FileReader {
         return new double[]{};
     }
 
-    public static int[][] getMatrixFromFile(String fileName) {
+    public static int[][] getMatrixFromFile(String filePath) {
         try {
-            FileInputStream fis = new FileInputStream("src/main/resources/" + fileName);
+            FileInputStream fis = new FileInputStream(filePath);
             String[] array = IOUtils.toString(fis, StandardCharsets.UTF_8.name()).split("\n");
             int[][] result = new int[array.length][];
             IntStream.range(0, array.length)
