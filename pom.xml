@@ -12,6 +12,10 @@
         <jfreechart.version>1.0.14</jfreechart.version>
         <commons-io.version>2.5</commons-io.version>
         <commons-math3.version>3.0</commons-math3.version>
+        <lombok.version>1.18.12</lombok.version>
+        <opencsv.version>4.0</opencsv.version>
+        <maven-plugin.version>2.3.2</maven-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -29,6 +33,16 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
             <version>${commons-math3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>${opencsv.version}</version>
         </dependency>
     </dependencies>
 

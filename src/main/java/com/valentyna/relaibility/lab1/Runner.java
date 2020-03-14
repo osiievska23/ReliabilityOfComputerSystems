@@ -15,18 +15,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static com.valentyna.relaibility.lab1.FileReader.getContentFromFile;
 import static com.valentyna.relaibility.lab1.GraphicBuilder.printBarGraphic;
+import static com.valentyna.relaibility.util.FileReader.getSampleFromFile;
 import static java.lang.Math.pow;
 
 public class Runner {
 
-    private static final String EXPONENTIAL_FILE_NAME = "exponential";
-    private static final String GAMMA_FILE_NAME = "gamma";
-    private static final String NORMAL_FILE_NAME = "normal";
-    private static final String UNIFORM_FILE_NAME = "uniform";
+    private static final String EXPONENTIAL_FILE_NAME = "exponential.txt";
+    private static final String GAMMA_FILE_NAME = "gamma.txt";
+    private static final String NORMAL_FILE_NAME = "normal.txt";
+    private static final String UNIFORM_FILE_NAME = "uniform.txt";
 
-    private static double[] sample = getContentFromFile(NORMAL_FILE_NAME);
+    private static double[] sample = getSampleFromFile(NORMAL_FILE_NAME);
     private static List<double[]> ranges;
 
     public static void main(String[] args) {
