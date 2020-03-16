@@ -1,8 +1,6 @@
 # ReliabilityOfComputerSystems
 ## Lab1
-### Set distribution 
-
-Open lab1/Ranner.java and set file name allowed ones
+To set distribution, open lab1/Ranner.java and set file name allowed ones
 ```
 private static double[] sample = getContentFromFile(EXPONENTIAL_FILE_NAME);
 private static double[] sample = getContentFromFile(GAMMA_FILE_NAME);
